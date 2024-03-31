@@ -50,7 +50,7 @@ jobs:
     #     asset_content_type: application/pdf
 
     - name: Fetch latest release information from first repository
-      id: fetch-latest-release
+      id: fetch_latest_release
       run: |
         response=$(curl -sH "Authorization: token ${{ secrets.PAT_TOKEN }}" \
                       "https://api.github.com/repos/priyanshu-lanjewar/resume/releases/latest")
@@ -65,5 +65,5 @@ jobs:
         curl -X PUT \
           -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
           -H "Content-Type: application/json" \
-          -d "{\"message\": \"Update file content\", \"content\": \"${{ steps.create_release.outputs.upload_url }}\", \"branch\": \"resume-updaate\"}" \
+          -d "{\"message\": \"Update file content\", \"content\": \"${{ steps.fetch_latest_release.outputs.url }}\", \"branch\": \"main\"}" \
           "https://api.github.com/repos/priyanshu-lanjewar/priyanshu-lanjewar.github.io/contents/assets/js/submit.js"
