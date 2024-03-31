@@ -20,7 +20,7 @@ jobs:
       run: sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-fonts-extra
 
     - name: Compile LaTeX document
-      run: xelatex -interaction=nonstopmode -halt-on-error -jobname=Priyanshu_Lanjewar.pdf resume.tex
+      run: xelatex -interaction=nonstopmode -halt-on-error -jobname=Priyanshu_Lanjewar resume.tex
 
     - name: Upload PDF artifact
       uses: actions/upload-artifact@v2
