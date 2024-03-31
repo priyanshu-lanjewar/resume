@@ -50,7 +50,7 @@ jobs:
         asset_content_type: application/pdf
 
     - name: Fetch latest release information from first repository
-        id: fetch_latest_release
+        id: fetch-latest-release
         run: |
           response=$(curl -sH "Authorization: token ${{ secrets.PAT_TOKEN }}" \
                         "https://api.github.com/repos/priyanshu-lanjewar/resume/releases/latest")
