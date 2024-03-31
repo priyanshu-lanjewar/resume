@@ -63,8 +63,9 @@ jobs:
       id: update_portfolio
       run: |
         # Update the content of the file in the target repository
+        FILE_CONTENT_BASE64=$(echo -n "${{ steps.fetch_latest_release.outputs.url }}" | base64)
         curl -X PUT \
           -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
           -H "Content-Type: application/json" \
-          -d "{\"message\": \"Update file content\", \"content\": \"${{ steps.fetch_latest_release.outputs.url }}\", \"branch\": \"main\"}" \
+          -d "{\"message\": \"Update file content\", \"content\": \"$FILE_CONTENT_BASE64\", \"branch\": \"main\"}" \
           "https://api.github.com/repos/priyanshu-lanjewar/priyanshu-lanjewar.github.io/contents/assets/js/submit.js"
