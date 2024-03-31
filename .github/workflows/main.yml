@@ -13,59 +13,38 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    # - name: Install LaTeX
-    #   run: sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-fonts-extra
+    - name: Install LaTeX
+      run: sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-fonts-extra
 
-    # - name: Compile LaTeX document
-    #   run: xelatex -interaction=nonstopmode -halt-on-error -jobname=Priyanshu_Lanjewar resume.tex
+    - name: Compile LaTeX document
+      run: xelatex -interaction=nonstopmode -halt-on-error -jobname=Priyanshu_Lanjewar resume.tex
 
-    # - name: Upload PDF artifact
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: generated-pdf
-    #     path: Priyanshu_Lanjewar.pdf
+    - name: Upload PDF artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: generated-pdf
+        path: Priyanshu_Lanjewar.pdf
 
-    # - name: Create release
-    #   id: create_release
-    #   uses: actions/create-release@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-    #   with:
-    #     tag_name: ${{ github.ref }}
-    #     release_name: Release ${{ github.ref }}
-    #     body: |
-    #       Release ${{ github.ref }}
-    #     draft: false
-    #     prerelease: false
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: |
+          Release ${{ github.ref }}
+        draft: false
+        prerelease: false
 
-    # - name: Upload PDF to release
-    #   id: upload-release-asset
-    #   uses: actions/upload-release-asset@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-    #   with:
-    #     upload_url: ${{ steps.create_release.outputs.upload_url }}
-    #     asset_path: Priyanshu_Lanjewar.pdf
-    #     asset_name: Priyanshu_Lanjewar.pdf
-    #     asset_content_type: application/pdf
-
-    - name: Fetch latest release information from first repository
-      id: fetch_latest_release
-      run: |
-        response=$(curl -sH "Authorization: token ${{ secrets.PAT_TOKEN }}" \
-                      "https://api.github.com/repos/priyanshu-lanjewar/resume/releases/latest")
-        DOWNLOAD_URL=$(echo "$response" | jq -r '.assets[0].browser_download_url')
-        echo "::set-output name=url::$DOWNLOAD_URL"
-        echo "$DOWNLOAD_URL"
-        echo "$url"
-    
-    - name: Update file content in target repository
-      id: update_portfolio
-      run: |
-        # Update the content of the file in the target repository
-        FILE_CONTENT_BASE64=$(echo -n "${{ steps.fetch_latest_release.outputs.url }}" | base64)
-        curl -X PUT \
-          -H "Authorization: Bearer ${{ secrets.PAT_TOKEN }}" \
-          -H "Content-Type: application/json" \
-          -d "{\"message\": \"Update file content\",\"committer\":{\"name\":\"Priyanshu Lanjewar\",\"email\":\"Priyanshu@Lanjewar.in\"}, \"content\": \"$FILE_CONTENT_BASE64\"}" \
-          "https://api.github.com/repos/priyanshu-lanjewar/priyanshu-lanjewar.github.io/contents/assets/js/submit.js"
+    - name: Upload PDF to release
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: Priyanshu_Lanjewar.pdf
+        asset_name: Priyanshu_Lanjewar.pdf
+        asset_content_type: application/pdf
