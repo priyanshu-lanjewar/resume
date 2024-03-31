@@ -2,11 +2,8 @@ name: LaTeX PDF Generation
 
 on:
   push:
-    branches:
-      - main  # Change this to the branch you want to trigger on
-  pull_request:
-    branches:
-      - main  # Change this to the branch you want to trigger on
+    tags:
+      - 'v*'
 
 jobs:
   build:
