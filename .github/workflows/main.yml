@@ -65,7 +65,7 @@ jobs:
         # Update the content of the file in the target repository
         FILE_CONTENT_BASE64=$(echo -n "${{ steps.fetch_latest_release.outputs.url }}" | base64)
         curl -X PUT \
-          -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+          -H "Authorization: Bearer ${{ secrets.PAT_TOKEN }}" \
           -H "Content-Type: application/json" \
           -d "{\"message\": \"Update file content\",\"committer\":{\"name\":\"Priyanshu Lanjewar\",\"email\":\"Priyanshu@Lanjewar.in\"}, \"content\": \"$FILE_CONTENT_BASE64\", \"branch\": \"main\"}" \
           "https://api.github.com/repos/priyanshu-lanjewar/priyanshu-lanjewar.github.io/contents/assets/js/submit.js"
