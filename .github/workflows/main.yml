@@ -60,6 +60,7 @@ jobs:
         echo "$url"
     
     - name: Update file content in target repository
+      id: update_portfolio
       run: |
         # Update the content of the file in the target repository
         curl -X PUT \
