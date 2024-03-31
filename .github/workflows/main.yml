@@ -48,3 +48,11 @@ jobs:
         asset_path: Priyanshu_Lanjewar.pdf
         asset_name: Priyanshu_Lanjewar.pdf
         asset_content_type: application/pdf
+
+    - name: Fetch latest release information from first repository
+        id: fetch_latest_release
+        run: |
+          response=$(curl -sH "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+                        "https://api.github.com/repos/priyanshu-lanjewar/resume/releases/latest")
+          DOWNLOAD_URL=$(echo "$response" | jq -r '.assets[0].browser_download_url')
+          echo "::set-output name=url::$DOWNLOAD_URL"
