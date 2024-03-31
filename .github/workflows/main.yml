@@ -17,13 +17,13 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Install LaTeX
-      run: sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+      run: sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-fonts-extra
 
     - name: Compile LaTeX document
-      run: pdflatex -interaction=nonstopmode -halt-on-error your_document.tex
+      run: xelatex -interaction=nonstopmode -halt-on-error resume.tex
 
     - name: Upload PDF artifact
       uses: actions/upload-artifact@v2
       with:
         name: generated-pdf
-        path: your_document.pdf
+        path: Priyanshu_Lanjewar.pdf
