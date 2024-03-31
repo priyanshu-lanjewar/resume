@@ -56,16 +56,14 @@ jobs:
                       "https://api.github.com/repos/priyanshu-lanjewar/resume/releases/latest")
         DOWNLOAD_URL=$(echo "$response" | jq -r '.assets[0].browser_download_url')
         echo "::set-output name=url::$DOWNLOAD_URL"
+        echo "$DOWNLOAD_URL"
+        echo "$url"
     
-    - name: Update file in second repository
-      uses: peter-evans/create-pull-request@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: "Update file with PDF URL"
-        title: "Update file with PDF URL"
-        body: "Updating file with the PDF URL obtained from latest release of first repository."
-        branch: update-pdf-url
-        branch-suffix: timestamp
-        base: main
-        files: |
-          https://github.com/priyanshu-lanjewar/priyanshu-lanjewar.github.io/assets/js/submit.js:${{ steps.fetch_latest_release.outputs.url }}
+    - name: Update file content in target repository
+      run: |
+        # Update the content of the file in the target repository
+        curl -X PUT \
+          -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d "{\"message\": \"Update file content\", \"content\": \"${{ steps.create_release.outputs.upload_url }}\", \"branch\": \"resume-updaate\"}" \
+          "https://api.github.com/repos/priyanshu-lanjewar/priyanshu-lanjewar.github.io/contents/assets/js/submit.js"
