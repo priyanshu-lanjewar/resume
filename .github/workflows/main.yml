@@ -67,5 +67,5 @@ jobs:
         curl -X PUT \
           -H "Authorization: Bearer ${{ secrets.PAT_TOKEN }}" \
           -H "Content-Type: application/json" \
-          -d "{\"message\": \"Update file content\",\"committer\":{\"name\":\"Priyanshu Lanjewar\",\"email\":\"Priyanshu@Lanjewar.in\"}, \"content\": \"$FILE_CONTENT_BASE64\", \"branch\": \"main\"}" \
+          -d "{\"message\": \"Update file content\",\"committer\":{\"name\":\"Priyanshu Lanjewar\",\"email\":\"Priyanshu@Lanjewar.in\"}, \"content\": \"$FILE_CONTENT_BASE64\"}" \
           "https://api.github.com/repos/priyanshu-lanjewar/priyanshu-lanjewar.github.io/contents/assets/js/submit.js"
