@@ -1,76 +1,61 @@
-%-------------------------------------------------------------------------------
-% CONFIGURATIONS
-%-------------------------------------------------------------------------------
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
 
-% A4 paper size by default, use 'letterpaper' for US letter
-\documentclass[11pt, a4paper]{awesome-cv}
+\geometry{left=0.5cm,right=0.5cm,top=0.5cm,bottom=0.5cm,columnsep=0.5cm}
 
-% Configure page margins with geometry
-\geometry{left=1.4cm, top=1.4cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
+\usepackage{paracol}
 
-% Specify the location of the included fonts
-\fontdir[fonts/]
+\ifxetexorluatex
+  \setmainfont{Lato}
+\else
+  \usepackage[default]{lato}
+\fi
 
-% Color for highlights
-% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
-%                 awesome-nephritis, awesome-concrete, awesome-darknight
-\colorlet{awesome}{awesome-red}
-% Uncomment if you would like to specify your own color
-% \definecolor{awesome}{HTML}{CA63A8}
-
-% Set false if you don't want to highlight section with awesome color
-\setbool{acvSectionColorHighlight}{true}
-
-% If you would like to change the social information separator from a pipe (|) to something else
-\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
-
-\usepackage{multicol}
-
-%-------------------------------------------------------------------------------
-%	PERSONAL INFORMATION
-%-------------------------------------------------------------------------------
-% Available options: circle|rectangle,edge/noedge,left/right
-% \photo[rectangle,edge,right]{./examples/profile}
-\name{Priyanshu}{Lanjewar}
-\position{Kubernetes Devops Engineer{\enskip\cdotp\enskip}Platform Engineer}
-\address{Sales Tax Colony, Fulchur Peth, Gondia, Maharashtra, India - 441601}
-
-\mobile{ +91-9834717592}
-\email{priyanshu@lanjewar.in}
-\homepage{priyanshu.lanjewar.in}
-\github{priyanshu-lanjewar}
-\linkedin{priyanshulanjewar}
-\medium{priyanshu.lanjewar}
+\definecolor{VividPurple}{HTML}{3E0097}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\definecolor{headingcolor}{HTML}{00C3FF}
+\colorlet{tagline}{black}
+\colorlet{heading}{black}
+\colorlet{headingrule}{black}
+\colorlet{accent}{black}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
 
 
-\quote{`The only way to do great work is to love what you do.`}
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
 
+%% sample.bib contains your publications
+\addbibresource{sample.bib}
 
-%-------------------------------------------------------------------------------
 \begin{document}
+\name{PRIYANSHU LANJEWAR}
+\tagline{KUBERNETES | CLOUD | PLATFORM | INFRASTRUCTURE | GOLANG}
 
-% Print the header with above personal informations
-% Give optional argument to change alignment(C: center, L: left, R: right)
-\makecvheader[C]
+\personalinfo{%
+  \phone{+919834717592}
+  \email{priyanshu@lanjewar.in}
+  \linkedin{priyanshu-lanjewar}
+  \github{priyanshu-lanjewar}
+  \mailaddress{Gondia, MH, India} 
+}
 
-% Print the footer with 3 arguments(<left>, <center>, <right>)
-% Leave any of these blank if they are not needed
-\makecvfooter
-  {\thepage}
-  {Priyanshu Lanjewar~~~·~~~Résumé}
-  {\today}
+\makecvheader
 
-\input{resume/summary.tex}
-\input{resume/experience.tex}
-\input{resume/education.tex}
+\AtBeginEnvironment{itemize}{\small}
 
-\newpage
-\input{resume/skills.tex}
-\input{resume/subject.tex}
-\input{resume/achievements.tex}
-\input{resume/certificates.tex}
-\input{resume/positions.tex}
-\input{resume/extracurricular.tex}
+\columnratio{0.55}
 
-%-------------------------------------------------------------------------------
+\begin{paracol}{2}
+\input{resume/experience}
+\input{resume/education}
+
+\switchcolumn
+
+\input{resume/achievements}
+\input{resume/skills}
+\input{resume/positions}
+
+\end{paracol}
+
 \end{document}
