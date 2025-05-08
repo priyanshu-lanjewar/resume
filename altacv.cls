@@ -309,13 +309,14 @@
 \newcommand{\projectname}[1]{%
   {\large\color{emphasis}#1\par}
   \smallskip\normalsize
-  }\par
+  \par
   \medskip\normalsize
 }
 
-\newcommand{\cvachievement}[2]{%
-  \begin
-  \multirow{\Large\color{accent}#1} & \bfseries\textcolor{emphasis}{#2}\\
+\newcommand{\cvachievement}[3]{%
+  \begin{tabularx}{\linewidth}{@{}lX@{}}
+    \multirow{2}{*}{\Large\textcolor{accent}{#1}} & \textbf{\textcolor{emphasis}{#2}} \\
+                                                  & {#3} \\
   \end{tabularx}%
   \smallskip
 }
