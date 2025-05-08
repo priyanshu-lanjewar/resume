@@ -37,12 +37,13 @@
 \LoadClass{article}
 %% v1.3.2 Hopefully this helps make the PDF
 %% file more 'friendly' with copy-paste etc
-\RequirePackage[a-1b]{pdfx}
+% \RequirePackage[a-1b]{pdfx}
 \RequirePackage[margin=2cm]{geometry}
 \RequirePackage[fixed]{fontawesome5}
 \RequirePackage{ifxetex,ifluatex}
 \RequirePackage{scrlfile}
 \RequirePackage{xparse}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
 
 %% v1.1.5: added for convenience
 \newif\ifxetexorluatex
