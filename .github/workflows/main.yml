@@ -20,7 +20,7 @@ jobs:
       run: xelatex -interaction=nonstopmode -halt-on-error -jobname=Priyanshu_Lanjewar resume.tex
 
     - name: Upload PDF artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: generated-pdf
         path: Priyanshu_Lanjewar.pdf
