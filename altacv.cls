@@ -211,13 +211,13 @@
 \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
 \NewInfoField{email}{\faAt}[mailto:]
 \NewInfoField{mailaddress}{\faEnvelope}
-\NewInfoField{phone}{\faPhone}
+\NewInfoField{phone}{\faPhone}[tel://]
 \NewInfoField{homepage}{\faGlobe}[https://]
 \NewInfoField{twitter}{\faTwitter}[https://twitter.com/]
 \NewInfoField{linkedin}{\faLinkedin}[https://linkedin.com/in/]
 \NewInfoField{github}{\faGithub}[https://github.com/]
 \NewInfoField{orcid}{\aiOrcid}[https://orcid.com/]
-\NewInfoField{location}{\faMapMarker}
+\NewInfoField{location}{\faMapMarker}[https://www.google.co.in/maps/place/]
 
 % v1.2: Support for multiple photos
 \newlength{\altacv@photos@width}
